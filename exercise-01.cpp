@@ -112,6 +112,35 @@ void traversal(Pembalap* head){
 	}
 }
 
+void sortingByNomor (Pembalap *head){
+    int tukar;
+    Pembalap *pBantu;
+    Pembalap *pBantu2 = NULL;
+
+    if (head == NULL)
+        return;
+
+    do
+    {
+        tukar = 0;
+        pBantu = head;
+
+        while (pBantu->next != pBantu2)
+        {
+            if (pBantu->nomor > pBantu->next->nomor)
+            {
+                swap(pBantu->nomor, pBantu->next->nomor);
+                swap(pBantu->nama, pBantu->next->nama);
+                swap(pBantu->waktu, pBantu->next->waktu);
+                tukar = 1;
+            }
+            pBantu = pBantu->next;
+        }
+        pBantu2 = pBantu;
+    }
+    while (tukar);
+}
+
 
 void update(Pembalap* firstNode, int nomorKey){
 	Pembalap* pBantu=firstNode;
@@ -144,7 +173,8 @@ int main() {
     insertBefore(head, keyNomor, pBaru);
     traversal(head);
     cout << "\n>>> SortingByNomor" << endl;
-    traversal(head);
+    sortingByNomor(head);
+	traversal(head);
     
 	keyNomor = 3;
     cout << "\n>>> Delete nomor " << keyNomor << endl;
